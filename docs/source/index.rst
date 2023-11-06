@@ -13,18 +13,33 @@ For more detailed information on how to install and use I-ART, including its div
 
 For more detailed theoretical background and methodologies implemented in the I-ART package, you can refer to the following article:
 
-.. article:: Design-Based Causal Inference with Missing Outcomes: Missingness Mechanisms, Imputation-Assisted Randomization Tests, and Covariate Adjustment
-   :url: https://arxiv.org/abs/2310.18556
+`Design-Based Causal Inference with Missing Outcomes: Missingness Mechanisms, Imputation-Assisted Randomization Tests, and Covariate Adjustment <https://arxiv.org/abs/2310.18556>`_
 
+The source code for I-ART is available on GitHub:
+
+`I-ART on GitHub <https://github.com/Causal-I-ART/I-ART>`
+
+If you use I-ART in your research, please consider citing:
+
+.. code-block:: bibtex
+
+   @misc{heng2023designbased,
+         title={Design-Based Causal Inference with Missing Outcomes: Missingness Mechanisms, Imputation-Assisted Randomization Tests, and Covariate Adjustment},
+         author={Siyu Heng and Jiawei Zhang and Yang Feng},
+         year={2023},
+         eprint={2310.18556},
+         archivePrefix={arXiv},
+         primaryClass={stat.ME}
+   }
 
 Contents
 --------
 
 .. toctree::
+   :maxdepth: 2
 
    algorithms
    usage
    api
    contributing
    license
-

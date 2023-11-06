@@ -1,8 +1,3 @@
-Algorithms in I-ART
-===================
-
-The I-ART package implements several algorithms for conducting finite-population-exact randomization tests in the context of design-based causal studies with missing outcomes. Below are the two primary algorithms used in I-ART.
-
 Algorithm: Imputation and Re-Imputation Framework
 -------------------------------------------------
 
@@ -20,19 +15,28 @@ This algorithm forms the core of I-ART for testing Fisher's sharp null hypothesi
 
    Steps:
    1. Use (Z, X, Y*) and a chosen algorithm G to obtain full imputed outcomes Y^:
-      G: (Z, X, Y*) -> Y^ = (Y_1^, ..., Y_K^).  (The Imputation Step)
+
+      .. math::
+         G: (Z, X, Y^*) \to Y^ = (Y_1^, \ldots, Y_K^).  \text{(The Imputation Step)}
 
    2. For each l=1, ..., L:
+
       a. Randomly generate Z^(l) according to the randomization design P.
+
       b. Obtain full imputed outcomes Y^(l) based on (Z^(l), X, Y*):
-         G: (Z^(l), X, Y*) -> Y^(l) = (Y_1^(l), ..., Y_K^(l)). (The Re-Imputation Step)
+
+         .. math::
+            G: (Z^{(l)}, X, Y^*) \to Y^{(l)} = (Y_1^{(l)}, \ldots, Y_K^{(l)}). \text{(The Re-Imputation Step)}
+
       c. Calculate T^(l) = T(Z, Y^(l)) for the l-th re-imputation run.
 
    3. Approximate the finite-population-exact p-value under Fisher's sharp null H0:
-      p^ = (1/L) ∑ (l=1 to L) 1{T^(l) >= t}.
+
+      .. math::
+         \hat{p} = \frac{1}{L} \sum_{l=1}^{L} \mathbf{1}\{T^{(l)} \geq t\}.
 
    Output:
-   - Approximate finite-population-exact p-value p^ under Fisher's sharp null H0.
+   - Approximate finite-population-exact p-value \(\hat{p}\) under Fisher's sharp null H0.
 
 Algorithm: Imputation and Re-Imputation with Covariate Adjustment
 ----------------------------------------------------------------
@@ -51,14 +55,25 @@ This variant of the algorithm includes an additional step of covariate adjustmen
 
    Steps:
    1. Use (Z, X, Y*) and chosen imputation algorithm G to obtain full imputed outcomes Y^.
-   2. Use (X, Y^) and outcome prediction model H to get predicted outcomes Y~ (Covariate Adjustment after Imputation).
-   3. Calculate t=T(Z, ε), where ε=Y^ - Y~ is the residuals vector.
-   4. For each l=1, ..., L:
-      a. Randomly generate Z^(l) according to randomization design P.
-      b. Obtain full imputed outcomes Y^(l) based on (Z^(l), X, Y*) and algorithm G.
-      c. Use (X, Y^(l)) and model H to get predicted outcomes Y~(l) (Covariate Adjustment after Re-Imputation).
-      d. Calculate T^(l)=T(Z, ε^(l)) and store the value, where ε^(l)=Y^(l) - Y~(l) is the residuals vector for the l-th permutation.
-   5. Approximate the finite-population-exact p-value under Fisher's sharp null H0 via: p^_adj = (1/L) ∑ 1{T^(l) >= t}.
+
+   2. Use (X, Y^) and outcome prediction model H to get predicted outcomes \(\tilde{Y}\) (Covariate Adjustment after Imputation).
+
+   3. Calculate \(t = T(Z, \varepsilon)\), where \(\varepsilon = Y^ - \tilde{Y}\) is the residuals vector.
+
+   4. For each \(l = 1, \ldots, L\):
+
+      a. Randomly generate \(Z^{(l)}\) according to randomization design P.
+
+      b. Obtain full imputed outcomes \(Y^{(l)}\) based on \((Z^{(l)}, X, Y^*)\) and algorithm G.
+
+      c. Use \((X, Y^{(l)})\) and model H to get predicted outcomes \(\tilde{Y}^{(l)}\) (Covariate Adjustment after Re-Imputation).
+
+      d. Calculate \(T^{(l)} = T(Z, \varepsilon^{(l)})\) and store the value, where \(\varepsilon^{(l)} = Y^{(l)} - \tilde{Y}^{(l)}\) is the residuals vector for the l-th permutation.
+
+   5. Approximate the finite-population-exact p-value under Fisher's sharp null H0 via:
+
+      .. math::
+         \hat{p}_{\text{adj}} = \frac{1}{L} \sum_{l=1}^{L} \mathbf{1}\{T^{(l)} \geq t\}.
 
    Output:
-   - Approximate finite-population-exact p-value p^_adj under Fisher's sharp null H0.
+   - Approximate finite-population-exact p-value \(\hat{p}_{\text{adj}}

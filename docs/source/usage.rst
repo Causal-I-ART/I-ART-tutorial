@@ -30,8 +30,11 @@ To perform a basic randomization test:
     from i_art import iartest
 
     Z = np.array([1, 1, 1, 1, 0, 0, 0, 0])
+
     X = np.array([[5.1, 3.5], [4.9, np.nan], [4.7, 3.2], [4.5, np.nan], [7.2, 2.3], [8.6, 3.1], [6.0, 3.6], [8.4, 3.9]])
+
     Y = np.array([[4.4, 0.5], [4.3, 0.7], [4.1, np.nan], [5.0, 0.4], [1.7, 0.1], [np.nan, 0.2], [1.4, np.nan], [1.7, 0.4]])
+    
     result = iartest(Z=Z, X=X, Y=Y, L=1000, verbose=True)
 
 Different Imputation Methods in I-ART
@@ -99,9 +102,6 @@ Stratification in data analysis is a technique used to ensure that different sub
 
 The `S` parameter requires an array indicating the stratum index for each data point. Each unique value in this array represents a different stratum. The function then considers these strata during the analysis, which can be crucial for representative results, especially in heterogeneous populations.
 
-Example:
---------
-
 .. code-block:: python
 
     # S array indicates the stratum index for each data point
@@ -119,9 +119,6 @@ Covariate Adjustment
 Covariate adjustment in randomization tests is a technique used to control for the effects of observed covariates that might increase the power. In the I-ART package, this is particularly relevant when dealing with missing outcomes and stratified data. The `iartest` function allows for covariate adjustment.
 
 To enable covariate adjustment in your analysis, set the `covariate_adjustment` parameter to `True` in the `iartest` function. This triggers the application of methods detailed in `algorithms.rst`, where different strategies for covariate adjustment are described, including the use of specific imputation techniques that take covariates into account.
-
-Example Usage:
---------------
 
 .. code-block:: python
 
