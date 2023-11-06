@@ -1,9 +1,4 @@
-Template for the Read the Docs tutorial
+I-ART tutorial
 =======================================
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
-
-Read the tutorial here:
-
-https://docs.readthedocs.io/en/stable/tutorial/
+This is the tutorial for the [I-ART](https://github.com/Causal-I-ART/I-ART) package. The tutorial is divided into two parts. The first part is a tutorial for the I-ART python package. The second part is a tutorial for the I-ART R package.
