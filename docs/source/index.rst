@@ -11,18 +11,26 @@ For more detailed information on how to install and use I-ART, including its div
 
    I-ART is an open-source project and is actively maintained. Contributions, bug reports, and feature suggestions are welcome!
 
+Article
+-----------------
 For more detailed theoretical background and methodologies implemented in the I-ART package, you can refer to the following article:
 
 `Design-Based Causal Inference with Missing Outcomes: Missingness Mechanisms, Imputation-Assisted Randomization Tests, and Covariate Adjustment <https://arxiv.org/abs/2310.18556>`_
 
+GitHub
+-----------------
 The source code for I-ART is available on GitHub:
 
 `I-ART on GitHub <https://github.com/Causal-I-ART/I-ART>`
 
+PyPI
+-----------------
 You can also find I-ART on PyPI:
 
 `I-ART on PyPI <https://pypi.org/project/causal-i-art/>`
 
+Citation
+-----------------
 If you use I-ART in your research, please consider citing:
 
 .. code-block:: bibtex
