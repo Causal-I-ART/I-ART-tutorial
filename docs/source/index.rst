@@ -21,13 +21,13 @@ GitHub
 -----------------
 The source code for I-ART is available on GitHub:
 
-`I-ART on GitHub <https://github.com/Causal-I-ART/I-ART>`
+`I-ART on GitHub <https://github.com/Causal-I-ART/I-ART>`_
 
 PyPI
 -----------------
 You can also find I-ART on PyPI:
 
-`I-ART on PyPI <https://pypi.org/project/causal-i-art/>`
+`I-ART on PyPI <https://pypi.org/project/causal-i-art/>`_
 
 Citation
 -----------------
@@ -45,7 +45,7 @@ If you use I-ART in your research, please consider citing:
    }
 
 Contents
---------
+-----------------
 
 .. toctree::
    :maxdepth: 2
