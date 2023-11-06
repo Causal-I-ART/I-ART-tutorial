@@ -26,13 +26,13 @@ GitHub
 -----------------
 The source code for I-ART is available on GitHub:
 
-`I-ART on GitHub <https://github.com/Causal-I-ART/I-ART>`_
+`I-ART on GitHub <https://github.com/Imputation-Assisted-Randomization-Tests/py-I-ART>`_
 
 PyPI
 -----------------
 You can also find I-ART on PyPI:
 
-`I-ART on PyPI <https://pypi.org/project/causal-i-art/>`_
+`I-ART on PyPI <https://pypi.org/project/py-i-art/>`_
 
 Citation
 -----------------
