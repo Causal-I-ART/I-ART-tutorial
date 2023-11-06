@@ -17,6 +17,11 @@ For more detailed theoretical background and methodologies implemented in the I-
 
 `Design-Based Causal Inference with Missing Outcomes: Missingness Mechanisms, Imputation-Assisted Randomization Tests, and Covariate Adjustment <https://arxiv.org/abs/2310.18556>`_
 
+.. raw:: html
+
+    <iframe src="_static/2310.18556.pdf" width="700" height="388" style="border: none;">Your browser does not support PDFs. Download the PDF to view it: <a href="_static/2310.18556.pdf">Download PDF</a>.</iframe>
+
+
 GitHub
 -----------------
 The source code for I-ART is available on GitHub:
