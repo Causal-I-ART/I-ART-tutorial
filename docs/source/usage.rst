@@ -10,7 +10,7 @@ To use I-ART, install it using pip:
 
 .. code-block:: console
 
-   (.venv) $ pip install causal-i-art
+   (.venv) $ pip install py-i-art
 
 Conducting Randomization Tests with I-ART
 -----------------------------------------
