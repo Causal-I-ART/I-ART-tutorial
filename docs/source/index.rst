@@ -55,7 +55,9 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   usage
+   python-package
+   R-package
+   difference
    api
    contributing
    license

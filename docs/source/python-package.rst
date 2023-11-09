@@ -134,6 +134,16 @@ Specifying an Alternative Hypothesis:
 
 To specify a one-sided or two-sided alternative hypothesis:
 
+.. math::
+
+    p_{k}=\frac{1}{L}\sum_{l=1}^{L}\mathbf{1}\{t^{l}_{k}\geq t^{\text{obs}}_{k}\} \quad \text{(one-sided)}
+
+or
+
+.. math::
+
+    p_{k}=\frac{1}{L}\sum_{l=1}^{L}\mathbf{1}\{|t^{l}_{k}-\overline{t}_{k}|\geq |t^{\text{obs}}_{k}-\overline{t}_{k}|\} \quad \text{(two-sided)},
+
 .. code-block:: python
 
     # For a one-sided test
