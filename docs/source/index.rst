@@ -68,3 +68,4 @@ Contents
    api
    contributing
    license
+   references
