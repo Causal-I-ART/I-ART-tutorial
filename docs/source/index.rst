@@ -65,7 +65,6 @@ Contents
    python-package
    R-package
    difference
-   api
    contributing
    license
    references
