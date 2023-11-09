@@ -1,4 +1,4 @@
-Usage
+Python-package
 =====
 
 .. _installation:
@@ -77,23 +77,20 @@ Choose the imputation method that best fits the characteristics of your data and
 Custom Imputation Method
 ------------------------
 
-In addition to the predefined imputation methods, I-ART also allows for the use of custom imputation techniques. You can specify your own imputation method by passing an `IterativeImputer` object from scikit-learn as the `G` parameter. Ensure that the custom imputer conforms to the format and requirements of `IterativeImputer`. The estimator is in standard sklearn estimator format, i.e. `estimator.fit_transform(X)` and `estimator.transform(X)`.
+You have the option to create a personalized imputation approach by utilizing the `IterativeImputer` class with an estimator parameter set to a regression model of your choice. This allows for a tailored fit to your specific data and imputation needs.
 
-Example of setting up a custom `IterativeImputer`:
+Example of creating a custom imputation strategy:
 
 .. code-block:: python
 
-    from sklearn.experimental import enable_iterative_imputer
     from sklearn.impute import IterativeImputer
-    from sklearn import linear_model
+    from sklearn.linear_model import BayesianRidge
+    custom_imputer = IterativeImputer(estimator=BayesianRidge())
+    custom_imputer.fit_transform(X)
 
-    # Custom imputation method using Bayesian Ridge
-    custom_imputer = IterativeImputer(estimator=linear_model.BayesianRidge(), max_iter=1, verbose=0)
+For guidance on constructing your own imputation method in scikit-learn, visit the `IterativeImputer` documentation: `IterativeImputer <https://scikit-learn.org/stable/modules/generated/sklearn.impute.IterativeImputer.html>`_.
 
-    # Using the custom imputer in iartest
-    result = iartest(Z=Z, X=X, Y=Y, G=custom_imputer, L=1000, verbose=True)
-
-This flexibility allows you to tailor the imputation method to the specific characteristics of your data and the requirements of your analysis. Whether you choose a predefined method or create a custom one, the key is to select an approach that best aligns with your data structure and study objectives.
+Additionally, refer to this resource for understanding the standards for scikit-learn estimators: `Developing scikit-learn estimators <https://scikit-learn.org/stable/developers/develop.html>`_.
 
 Handling Strata in the Data
 ---------------------------

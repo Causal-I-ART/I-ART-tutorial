@@ -24,15 +24,22 @@ For more detailed theoretical background and methodologies implemented in the I-
 
 GitHub
 -----------------
-The source code for I-ART is available on GitHub:
+The source code for all I-ART is available on GitHub:
 
 `I-ART on GitHub <https://github.com/Imputation-Assisted-Randomization-Tests/py-I-ART>`_
 
-PyPI
+Python
 -----------------
 You can also find I-ART on PyPI:
 
 `I-ART on PyPI <https://pypi.org/project/py-i-art/>`_
+
+R
+-----------------
+You can also find I-ART on R:
+
+`IART on R <https://github.com/Imputation-Assisted-Randomization-Tests/IART/>`_
+
 
 Citation
 -----------------

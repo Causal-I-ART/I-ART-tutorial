@@ -1,4 +1,4 @@
-Usage
+R-package
 =====
 
 .. _installation:
@@ -53,12 +53,16 @@ To specify an imputation method in R, set the `G` parameter in the `iartest` fun
 
         result <- iartest(Z, X, Y, G = 'mice', L = 1000, verbose = TRUE)
 
+    You can find more about the `mice` package on its CRAN page here: `mice <https://CRAN.R-project.org/package=mice>`_.
+
 - **MissForest (`'missforest'`)**:
     MissForest is a non-parametric imputation method in R. It is a non-parametric imputation method that uses a random forest to impute missing data.
 
     .. code-block:: R
 
         result <- iartest(Z, X, Y, G = 'missforest', L = 1000, verbose = TRUE)
+
+    For more information on `missforest`, visit the CRAN page: `missforest <https://CRAN.R-project.org/package=missForest>`_.
 
 Handling Strata in the Data
 ---------------------------
@@ -114,6 +118,6 @@ Set a random state for reproducibility in R:
 
 .. code-block:: R
 
-# Setting a seed for reproducibility
-set.seed(42)
-result <- iartest(Z, X, Y, L = 1000, verbose = TRUE)
+    # Setting a seed for reproducibility
+    set.seed(42)
+    result <- iartest(Z, X, Y, L = 1000, verbose = TRUE)
