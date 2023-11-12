@@ -1,19 +1,38 @@
-Welcome to I-ART's documentation!
+Welcome to iArt's documentation!
 =================================
 
-**I-ART** (Imputation-Assisted Randomization Tests) is a Python package designed for conducting finite-population-exact randomization tests in design-based causal studies with missing outcomes. It leverages the potential outcomes framework and integrates various outcome imputation algorithms to offer a robust solution for handling missing data in causal inference.
+**iArt** (Imputation-Assisted Randomization Tests) is finite-population-exact randomization tests in design-based causal studies with
+missing outcomes.
 
-This package is particularly useful for researchers and practitioners in the fields of statistics, epidemiology, social sciences, and any other domain where causal inference from experimental or observational data is crucial.
-
-For more detailed information on how to install and use I-ART, including its diverse functionalities and practical examples, refer to the :doc:`usage` section.
+Design-based (also known as finite-population or randomization-based) causal inference is one of the most widely used frameworks for testing causal null hypotheses or
+inferring about causal parameters from experimental or observational data. The most
+significant merit of design-based causal inference is that its statistical validity only
+comes from the study design (e.g., randomization design in a randomized experiment)
+and does not require assuming any outcome-generating distributions or models. Although immune to model misspecification, design-based causal inference can still suffer
+from other data challenges, among which missingness in outcomes is a significant one.
+However, compared with model-based (also known as super-population or samplingbased) causal inference, outcome missingness in design-based causal inference is much
+less studied, largely due to the challenge that design-based causal inference does not
+assume any outcome distributions/models and, therefore, cannot directly adopt any
+existing model-based approaches for missing data. To fill this gap, we systematically study the missing outcomes problem in design-based causal inference. First, we
+use the potential outcomes framework to clarify the minimal assumption (concerning
+the outcome missingness mechanism) needed for conducting finite-population-exact
+randomization tests for the null effect (i.e., Fisher’s sharp null) and that needed for
+constructing finite-population-exact confidence sets with missing outcomes. Second,
+we propose a general framework called “imputation and re-imputation" for conducting finite-population-exact randomization tests in design-based causal studies with
+missing outcomes. Our framework can incorporate any existing outcome imputation
+algorithms and meanwhile guarantee finite-population-exact type-I error rate control.
+Third, we extend our framework to conduct covariate adjustment in an exact randomization test with missing outcomes and to construct finite-population-exact confidence
+sets with missing outcomes. We conduct comprehensive simulation studies to examine
+exact type-I error rate control and gains in power using our framework. We have also
+developed an open-source Python and R package for implementation of our methods.
 
 .. note::
 
-   I-ART is an open-source project and is actively maintained. Contributions, bug reports, and feature suggestions are welcome!
+   iArt is an open-source project, available in Python and R packages. We actively encourage contributions, bug reports, and feature suggestions!
 
 Article
 -----------------
-For more detailed theoretical background and methodologies implemented in the I-ART package, you can refer to the following article:
+For more detailed theoretical background and methodologies implemented in the iArt package, you can refer to the following article:
 
 `Design-Based Causal Inference with Missing Outcomes: Missingness Mechanisms, Imputation-Assisted Randomization Tests, and Covariate Adjustment <https://arxiv.org/abs/2310.18556>`_
 
@@ -24,26 +43,26 @@ For more detailed theoretical background and methodologies implemented in the I-
 
 GitHub
 -----------------
-The source code for all I-ART is available on GitHub:
+The source code for all iArt is available on GitHub:
 
-`I-ART on GitHub <https://github.com/Imputation-Assisted-Randomization-Tests/py-I-ART>`_
+`iArt on GitHub <https://github.com/Imputation-Assisted-Randomization-Tests/python-iArt>`_
 
 Python
 -----------------
-You can also find I-ART on PyPI:
+You can also find iArt on PyPI:
 
-`I-ART on PyPI <https://pypi.org/project/py-i-art/>`_
+`iArt on PyPI <https://pypi.org/project/python-iArt/>`_
 
 R
 -----------------
-You can also find I-ART on R:
+You can also find iArt here:
 
-`IART on R <https://github.com/Imputation-Assisted-Randomization-Tests/IART/>`_
+`iArt on R <https://github.com/Imputation-Assisted-Randomization-Tests/iArt/>`_
 
 
 Citation
 -----------------
-If you use I-ART in your research, please consider citing:
+If you use iArt in your research, please consider citing:
 
 .. code-block:: bibtex
 

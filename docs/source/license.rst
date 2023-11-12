@@ -1,7 +1,7 @@
 License
 =======
 
-The I-ART package is licensed under the MIT License. The MIT License is a permissive free software license originating at the Massachusetts Institute of Technology (MIT). It is compatible with many copyleft licenses, such as the GNU General Public License (GPL). The MIT License puts very limited restriction on reuse and has therefore an excellent license compatibility.
+The iArt package is licensed under the MIT License. The MIT License is a permissive free software license originating at the Massachusetts Institute of Technology (MIT). It is compatible with many copyleft licenses, such as the GNU General Public License (GPL). The MIT License puts very limited restriction on reuse and has therefore an excellent license compatibility.
 
 Full Text of the MIT License
 ----------------------------
