@@ -45,7 +45,7 @@ The iArt package supports various methods for imputing missing data. Each method
 - **XGBoost (`'xgboost'`)**: 
   Utilizes the XGBoost algorithm, which is effective for complex datasets with nonlinear relationships. This method is suitable when the dataset has complex patterns that simpler methods might not capture well.
 
-- **Bayesian Ridge (`'bayesianridge'`)**: 
+- **Bayesian Ridge (`'linear'`)**: 
   Employs Bayesian Ridge Regression, a linear model that is useful for datasets where a linear relationship is expected between the features and the outcome.
 
 - **Median (`'median'`)**: 
@@ -57,20 +57,20 @@ The iArt package supports various methods for imputing missing data. Each method
 - **LightGBM (`'lightgbm'`)**: 
   Applies the LightGBM algorithm, which is efficient for large datasets and can handle categorical features well. It's an appropriate choice for datasets with complex patterns and a mix of feature types.
 
-- **MICE (`'mice'`)**: 
+- **MICE (`'iterative+linear'`)**: 
   Stands for Multiple Imputation by Chained Equations. It's a sophisticated method that models each feature with missing values as a function of other features in a round-robin fashion. Suitable for datasets where missing values occur at random.
 
-- **MICE with LightGBM (`'mice+lightgbm'`)**: 
+- **MICE with LightGBM (`'iterative+lightgbm'`)**: 
   A variant of MICE that uses LightGBM as the underlying estimator. This method combines the benefits of MICE with the powerful LightGBM algorithm.
 
-- **MICE with XGBoost (`'mice+xgboost'`)**: 
+- **MICE with XGBoost (`'iterative+xgboost'`)**: 
   Another variant of MICE, using XGBoost as the estimator. This method is useful for datasets with complex, nonlinear relationships among features.
 
 To specify the imputation method, set the `G` parameter in the `iArt.test` function to one of the above options. For example, to use Bayesian Ridge for imputation:
 
 .. code-block:: python
 
-    result = iArt.test(Z=Z, X=X, Y=Y, G='bayesianridge', L=1000, verbose=True)
+    result = iArt.test(Z=Z, X=X, Y=Y, G='iterative+linear', L=1000, verbose=True)
 
 Choose the imputation method that best fits the characteristics of your data and the requirements of your analysis.
 
@@ -107,37 +107,46 @@ For guidance on constructing your own imputation method in scikit-learn, visit t
 
 Additionally, refer to this resource for understanding the standards for scikit-learn estimators: `Developing scikit-learn estimators <https://scikit-learn.org/stable/developers/develop.html>`_.
 
-Handling Strata in the Data
----------------------------
+Handling Strata and Clusters in Data Analysis with the iArt Package
+-------------------------------------------------------------------
 
-Stratification in data analysis is a technique used to ensure that different subpopulations are adequately represented. In the iArt package, you can incorporate strata into your analysis using the `S` parameter in the `iArt.test` function. 
+In data analysis, stratification and clustering are techniques used to manage inherent groupings within the data. The `iArt` package facilitates the integration of both strata and clusters into your analysis by utilizing the `S` parameter in conjunction with the `mode` parameter in the `iArt.test` function.
 
-The `S` parameter requires an array indicating the stratum index for each data point. Each unique value in this array represents a different stratum. The function then considers these strata during the analysis, which can be crucial for representative results, especially in heterogeneous populations.
+The `S` parameter accepts an array where each element indicates the stratum or cluster index for each data point, with unique numbers in this array identifying separate groups. The `mode` parameter specifies whether these groups are treated as strata or clusters, defaulting to 'strata' if not explicitly set.
+
+Here's how to apply strata or clusters in your analysis:
 
 .. code-block:: python
 
-    # S array indicates the stratum index for each data point
+    import numpy as np
+    # S array specifies the stratum or cluster index for each data point
     S = np.array([0, 0, 1, 1, 1, 2, 2, 2])
     
-    # Incorporating strata into the analysis
-    result = iArt.test(Z=Z, X=X, Y=Y, S=S, L=1000, verbose=True)
+    # Specifying the mode as 'cluster' or 'strata'; default is 'strata'
+    result = iArt.test(Z=Z, X=X, Y=Y, S=S, mode='cluster', L=1000, verbose=True)
 
-In this example, the dataset is divided into three strata. The first two data points belong to stratum 0, the next three to stratum 1, and the final three to stratum 2. The `iArt.test` function will perform the analysis by considering these strata, thus accommodating the potential differences and similarities within each stratum.
+In this example, the dataset is divided into three groups. The first two data points are assigned to the first group, the next three to the second group, and the final three to the third group. By setting the `mode` parameter to 'cluster', the function will process these groups as clusters. You can change this to 'strata' depending on your study design. This approach allows the function to adapt the analysis to reflect the unique characteristics and interactions within and between each group.
 
-
-Covariate Adjustment 
+Covariate Adjustment
 -------------------------------------------
 
-Covariate adjustment in randomization tests is a technique used to control for the effects of observed covariates that might increase the power. In the iArt package, this uses bayesian ridge regression. The `iArt.test` function allows for covariate adjustment.
+Covariate adjustment in randomization tests is a crucial technique used to control for the effects of observed covariates, potentially increasing the power of the tests. In the iArt package, this is facilitated using various methods including Bayesian ridge regression, linear models, and more advanced machine learning techniques such as XGBoost and LightGBM.
 
-To enable covariate adjustment in your analysis, set the `covariate_adjustment` parameter to `True` in the `iArt.test` function. This triggers the application of methods detailed in the article, where covariate adjustment algorithm details are described
+To enable covariate adjustment in your analysis, you can set the `covariate_adjustment` parameter in the `iArt.test` function. This parameter accepts different values to trigger specific types of adjustment:
+
+- 0: No covariate adjustment.
+- 1: Linear covariate adjustment using Bayesian ridge regression.
+- 2: Covariate adjustment using XGBoost.
+- 3: Covariate adjustment using LightGBM.
+
+Here's how to apply covariate adjustment in your analysis:
 
 .. code-block:: python
 
-    # Conducting a randomization test with covariate adjustment
-    result = iArt.test(Z=Z, X=X, Y=Y, covariate_adjustment=True, L=1000, verbose=True)
+    # Conducting a randomization test with covariate adjustment using Bayesian ridge regression
+    result = iArt.test(Z=Z, X=X, Y=Y, covariate_adjustment=1, L=1000, verbose=True)
 
-In this example, the `covariate_adjustment=True` argument instructs the `iArt.test` function to adjust for covariates while handling missing data and conducting the randomization test. This approach is particularly beneficial in studies where covariates are believed to influence the treatment effect or when the goal is to improve the robustness of the causal inference.
+In this example, setting `covariate_adjustment=1` instructs the `iArt.test` function to use Bayesian ridge regression for adjusting covariates. This choice is beneficial in studies where covariates are believed to influence the treatment effect, or when the aim is to enhance the robustness of causal inference.
 
 For more details on the specific algorithms and methods used for covariate adjustment in iArt, refer to the `algorithms.rst` documentation.
 
