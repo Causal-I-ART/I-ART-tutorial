@@ -23,7 +23,7 @@ For more detailed theoretical background and methodologies implemented in the iA
 
 GitHub
 -----------------
-The source code for all iArt is available on GitHub:
+All iArt related repositories are available on GitHub:
 
 `iArt on GitHub <https://github.com/orgs/Imputation-Assisted-Randomization-Tests/repositories>`_
 
@@ -39,6 +39,13 @@ You can also find iArt here:
 
 `iArt on R <https://github.com/Imputation-Assisted-Randomization-Tests/iArt/>`_
 
+Simulation and Real Data
+-----------------
+The simulation and real data used in the article can be found here:
+
+`Simulation and Real Data <
+https://github.com/Imputation-Assisted-Randomization-Tests/codebase
+>`_
 
 Citation
 -----------------
