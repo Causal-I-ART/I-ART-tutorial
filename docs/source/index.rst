@@ -43,9 +43,7 @@ Simulation and Real Data
 -----------------
 The simulation and real data used in the article can be found here:
 
-`Simulation and Real Data <
-https://github.com/Imputation-Assisted-Randomization-Tests/codebase
->`_
+`Simulation and Real Data <https://github.com/Imputation-Assisted-Randomization-Tests/codebase>`_
 
 Citation
 -----------------
