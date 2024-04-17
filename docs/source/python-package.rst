@@ -35,7 +35,7 @@ To perform a basic randomization test:
 
     Y = np.array([[4.4, 0.5], [4.3, 0.7], [4.1, np.nan], [5.0, 0.4], [1.7, 0.1], [np.nan, 0.2], [1.4, np.nan], [1.7, 0.4]])
     
-    result = iArt.test(Z=Z, X=X, Y=Y, L=1000, verbose=True)
+    result = iArt.test(Z=Z, X=X, Y=Y, L=10000, verbose=True)
 
 Different Imputation Methods in iArt
 --------------------------------------
@@ -70,7 +70,7 @@ To specify the imputation method, set the `G` parameter in the `iArt.test` funct
 
 .. code-block:: python
 
-    result = iArt.test(Z=Z, X=X, Y=Y, G='iterative+linear', L=1000, verbose=True)
+    result = iArt.test(Z=Z, X=X, Y=Y, G='iterative+linear', L=10000, verbose=True)
 
 Choose the imputation method that best fits the characteristics of your data and the requirements of your analysis.
 
@@ -107,12 +107,12 @@ For guidance on constructing your own imputation method in scikit-learn, visit t
 
 Additionally, refer to this resource for understanding the standards for scikit-learn estimators: `Developing scikit-learn estimators <https://scikit-learn.org/stable/developers/develop.html>`_.
 
-Handling Strata and Clusters in Data Analysis with the iArt Package
+Randomization Design
 -------------------------------------------------------------------
 
-In data analysis, stratification and clustering are techniques used to manage inherent groupings within the data. The `iArt` package facilitates the integration of both strata and clusters into your analysis by utilizing the `S` parameter in conjunction with the `mode` parameter in the `iArt.test` function.
+In data analysis, stratification and clustering are techniques used to manage inherent groupings within the data. The `iArt` package facilitates the integration of both strata and clusters into your analysis by utilizing the `S` parameter in conjunction with the `randomization_design` parameter in the `iArt.test` function.
 
-The `S` parameter accepts an array where each element indicates the stratum or cluster index for each data point, with unique numbers in this array identifying separate groups. The `mode` parameter specifies whether these groups are treated as strata or clusters, defaulting to 'strata' if not explicitly set.
+The `S` parameter accepts an array where each element indicates the stratum or cluster index for each data point, with unique numbers in this array identifying separate groups. The `randomization_design` parameter specifies whether these groups are treated as strata or clusters, defaulting to 'strata' if not explicitly set.
 
 Here's how to apply strata or clusters in your analysis:
 
@@ -122,10 +122,10 @@ Here's how to apply strata or clusters in your analysis:
     # S array specifies the stratum or cluster index for each data point
     S = np.array([0, 0, 1, 1, 1, 2, 2, 2])
     
-    # Specifying the mode as 'cluster' or 'strata'; default is 'strata'
-    result = iArt.test(Z=Z, X=X, Y=Y, S=S, mode='cluster', L=1000, verbose=True)
+    # Specifying the randomization_design as 'cluster' or 'strata'; default is 'strata'
+    result = iArt.test(Z=Z, X=X, Y=Y, S=S, randomization_design='cluster', L=10000, verbose=True)
 
-In this example, the dataset is divided into three groups. The first two data points are assigned to the first group, the next three to the second group, and the final three to the third group. By setting the `mode` parameter to 'cluster', the function will process these groups as clusters. You can change this to 'strata' depending on your study design. This approach allows the function to adapt the analysis to reflect the unique characteristics and interactions within and between each group.
+In this example, the dataset is divided into three groups. The first two data points are assigned to the first group, the next three to the second group, and the final three to the third group. By setting the `randomization_design` parameter to 'cluster', the function will process these groups as clusters. You can change this to 'strata' depending on your study design. This approach allows the function to adapt the analysis to reflect the unique characteristics and interactions within and between each group.
 
 Covariate Adjustment
 -------------------------------------------
@@ -135,20 +135,21 @@ Covariate adjustment in randomization tests is a crucial technique used to contr
 To enable covariate adjustment in your analysis, you can set the `covariate_adjustment` parameter in the `iArt.test` function. This parameter accepts different values to trigger specific types of adjustment:
 
 - 0: No covariate adjustment.
-- 1: Linear covariate adjustment using Bayesian ridge regression.
-- 2: Covariate adjustment using XGBoost.
-- 3: Covariate adjustment using LightGBM.
+- 'linear': Linear covariate adjustment using Bayesian ridge regression.
+- 'xgboost': Covariate adjustment using XGBoost.
+- 'lightgbm': Covariate adjustment using LightGBM.
 
 Here's how to apply covariate adjustment in your analysis:
 
 .. code-block:: python
 
     # Conducting a randomization test with covariate adjustment using Bayesian ridge regression
-    result = iArt.test(Z=Z, X=X, Y=Y, covariate_adjustment=1, L=1000, verbose=True)
+    result = iArt.test(Z=Z, X=X, Y=Y, covariate_adjustment='linear', L=10000, verbose=True)
 
-In this example, setting `covariate_adjustment=1` instructs the `iArt.test` function to use Bayesian ridge regression for adjusting covariates. This choice is beneficial in studies where covariates are believed to influence the treatment effect, or when the aim is to enhance the robustness of causal inference.
+In this example, setting `covariate_adjustment='linear'` instructs the `iArt.test` function to use Bayesian ridge regression for adjusting covariates. This choice is beneficial in studies where covariates are believed to influence the treatment effect, or when the aim is to enhance the robustness of causal inference.
 
 For more details on the specific algorithms and methods used for covariate adjustment in iArt, refer to the `algorithms.rst` documentation.
+
 
 Specifying an Alternative Hypothesis:
 -------------------------------------
@@ -158,13 +159,21 @@ To specify alternative hypothesis, set the `alternative` parameter in the `iArt.
 .. code-block:: python
 
     # For a one-sided test greater than
-    result = iArt.test(Z=Z, X=X, Y=Y, alternative="greater", L=1000, verbose=True)
+    result = iArt.test(Z=Z, X=X, Y=Y, alternative="greater", L=10000, verbose=True)
 
     # For a one-sided test less than
-    result = iArt.test(Z=Z, X=X, Y=Y, alternative="less", L=1000, verbose=True)
+    result = iArt.test(Z=Z, X=X, Y=Y, alternative="less", L=10000, verbose=True)
 
     # For a two-sided test
-    result = iArt.test(Z=Z, X=X, Y=Y, alternative="two-sided", L=1000, verbose=True)
+    result = iArt.test(Z=Z, X=X, Y=Y, alternative="two-sided", L=10000, verbose=True)
+
+Performance Enhancements
+-------------------------
+
+In many cases, a single covariate column may have a low rate of missing values. However, any missing values can cause the algorithm to initiate training for imputation using an iterative imputer. To optimize this, our enhancement involves preemptive imputation when the missing rate falls below a specified threshold. By imputing missing values with the median in advance, we significantly reduce the time required for training the imputer.
+
+**threshold_covariate_median_imputation**: float, default: 0.1
+   This parameter sets the threshold for preemptively imputing missing covariate values with the median to enhance performance.
 
 Setting a Random State for Reproducibility:
 -------------------------------------------
@@ -173,7 +182,7 @@ To set a random state for reproducibility:
 
 .. code-block:: python
 
-    result = iArt.test(Z=Z, X=X, Y=Y, random_state=42, L=1000, verbose=True)
+    result = iArt.test(Z=Z, X=X, Y=Y, random_state=42, L=10000, verbose=True)
 
 The `iArt.test` function is versatile and can be adapted to various scenarios in causal studies, especially those with missing data. The examples above demonstrate different ways to use the function to suit specific research needs.
 
